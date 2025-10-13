@@ -1,0 +1,3 @@
+/server/config/.env
+/server/config/serviceAccountKey.json
+/server/node_modules
