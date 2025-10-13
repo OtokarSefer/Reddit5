@@ -4,9 +4,14 @@ dotenv.config({ path: "./config/.env" })
 import bodyParser from "body-parser"
 import admin from "./fireBase.js"
 import fetch from "node-fetch"
-console.log("Firebase key:", process.env.FIREBASE_API_KEY)
+import cors from "cors"
 
 const app = express()
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
+
 app.use(bodyParser.json())
 
 app.post("/register", async (req, res) => {
