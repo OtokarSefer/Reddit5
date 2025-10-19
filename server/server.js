@@ -8,10 +8,15 @@ import cors from "cors"
 dotenv.config({ path: "./config/.env" })
 
 const app = express()
+
+// Update CORS for Netlify deployment
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.NODE_ENV === 'production' 
+    ? ["https://your-netlify-site.netlify.app", "http://localhost:5173"]
+    : "http://localhost:5173",
   credentials: true
 }))
+
 app.use(bodyParser.json())
 
 app.post("/register", async (req, res) => {
@@ -110,4 +115,6 @@ app.get("/posts/:id", async (req, res) => {
   }
 })
 
-app.listen(3333, () => console.log("Server Running on http://localhost:3333"))
+// Update for Netlify compatibility
+const PORT = process.env.PORT || 3333
+app.listen(PORT, () => console.log(`Server Running on port ${PORT}`))
