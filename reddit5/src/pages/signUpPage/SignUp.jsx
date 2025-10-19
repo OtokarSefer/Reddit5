@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './SignUp.css'
 
 function SignUp() {
   const [email, setEmail] = useState("")
@@ -46,71 +45,70 @@ function SignUp() {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-header">
-          <h2>Sign Up</h2>
-        </div>
-        <form className="login-form" onSubmit={register} noValidate>
-          
-          {/* Username */}
-          <div className="form-group">
-            <div className="input-wrapper">
-              <input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                type="text"
-                id="username"
-                name="username"
-                required
-                autoComplete="username"
-                disabled={isLoading}
-              />
-              <label htmlFor="username">Username</label>
-            </div>
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-card">
+          <div className="login-header">
+            <h2>Sign Up</h2>
           </div>
-
-          {/* Email */}
-          <div className="form-group">
-            <div className="input-wrapper">
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                id="email"
-                name="email"
-                required
-                autoComplete="email"
-                disabled={isLoading}
-              />
-              <label htmlFor="email">Email</label>
+          <form className="login-form" onSubmit={register} noValidate>
+            
+            <div className="form-group">
+              <div className="input-wrapper">
+                <input
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  autoComplete="username"
+                  disabled={isLoading}
+                />
+                <label htmlFor="username">Username</label>
+              </div>
             </div>
-          </div>
 
-          {/* Password */}
-          <div className="form-group">
-            <div className="input-wrapper">
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                id="password"
-                name="password"
-                required
-                autoComplete="new-password"
-                disabled={isLoading}
-              />
-              <label htmlFor="password">Password</label>
+            <div className="form-group">
+              <div className="input-wrapper">
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  disabled={isLoading}
+                />
+                <label htmlFor="email">Email</label>
+              </div>
             </div>
+
+            <div className="form-group">
+              <div className="input-wrapper">
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  autoComplete="new-password"
+                  disabled={isLoading}
+                />
+                <label htmlFor="password">Password</label>
+              </div>
+            </div>
+
+            <button type="submit" className="login-btn" disabled={isLoading}>
+              {isLoading ? "Creating Account..." : "Sign Up"}
+            </button>
+          </form>
+
+          <div className="signup-link">
+            <p>Have an account? <a href="/login">Sign In</a></p>
           </div>
-
-          <button type="submit" className="login-btn" disabled={isLoading}>
-            {isLoading ? "Creating Account..." : "Sign Up"}
-          </button>
-        </form>
-
-        <div className="signup-link">
-          <p>Have an account? <a href="/login">Sign In</a></p>
         </div>
       </div>
     </div>

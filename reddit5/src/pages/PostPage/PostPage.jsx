@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import "./PostPage.css"
 
 function PostPage() {
   const { id } = useParams()
@@ -27,7 +26,7 @@ function PostPage() {
   return (
     <div className="post-page-wrapper">
       <div className="post-page-container">
-        <button className="back-btn" onClick={() => navigate("/")}>← Back</button>
+        <button className="back-btn" onClick={() => navigate("/Home")}>← Back</button>
         <article className="post-box">
           <h1>{post.title}</h1>
           <p className="post-content">{post.content}</p>

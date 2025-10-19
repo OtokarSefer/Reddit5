@@ -7,7 +7,6 @@ import SignUp from './pages/signUpPage/SignUp.jsx'
 import Home from './pages/Home/Home.jsx'
 import PostPage from "./pages/PostPage/PostPage.jsx"
 
-
 const App = () => {
   return (
     <Router>

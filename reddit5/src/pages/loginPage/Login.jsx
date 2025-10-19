@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import './login.css'
-
 
 function Login() {
   const [ email, setEmail ] = useState("")
@@ -11,7 +9,7 @@ function Login() {
   const apiBase = import.meta.env.VITE_SERVER_URL
 
   async function login(e) {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     try {
       const res = await fetch(`${apiBase}/login`, {
         method: "POST",
@@ -42,56 +40,58 @@ function Login() {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-header">
-          <h2>Log In</h2>
-        </div>
-            
-        <form className="login-form" id="loginForm" noValidate>
-          <div className="form-group">
-            <div className="input-wrapper">
-              <input 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email" 
-                id="email" 
-                name="email" 
-                required autoComplete="email"/>
-              <label htmlFor="email">Email</label>
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-card">
+          <div className="login-header">
+            <h2>Log In</h2>
+          </div>
+                
+          <form className="login-form" id="loginForm" noValidate>
+            <div className="form-group">
+              <div className="input-wrapper">
+                <input 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required autoComplete="email"/>
+                <label htmlFor="email">Email</label>
+              </div>
+              <span className="error-message" id="emailError"></span>
             </div>
-            <span className="error-message" id="emailError"></span>
+
+            <div className="form-group">
+              <div className="input-wrapper">
+                <input 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password" 
+                  id="password" 
+                  name="password" 
+                  required autoComplete="current-password"/>
+                <label htmlFor="password">Password</label>
+                <button type="button" className="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                  <span className="toggle-icon"></span>
+                </button>
+              </div>
+              <span className="error-message" id="passwordError"></span>
+            </div>
+
+            <button onClick={login} type="submit" className="login-btn">
+              <span className="btn-text">Sign In</span>
+              <span className="btn-loader"></span>
+            </button>
+          </form>
+
+          <div className="signup-link">
+            <p>Don't have an account? <a href="/SignUp">Create one</a></p>
           </div>
 
-          <div className="form-group">
-            <div className="input-wrapper">
-              <input 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password" 
-                id="password" 
-                name="password" 
-                required autoComplete="current-password"/>
-              <label htmlFor="password">Password</label>
-              <button type="button" className="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
-                <span className="toggle-icon"></span>
-              </button>
-            </div>
-            <span className="error-message" id="passwordError"></span>
+          <div className="success-message" id="successMessage">
+            <p>Redirecting to your dashboard...</p>
           </div>
-
-          <button onClick={login} type="submit" className="login-btn">
-            <span className="btn-text">Sign In</span>
-            <span className="btn-loader"></span>
-          </button>
-        </form>
-
-        <div className="signup-link">
-          <p>Don't have an account? <a href="/SignUp">Create one</a></p>
-        </div>
-
-        <div className="success-message" id="successMessage">
-          <p>Redirecting to your dashboard...</p>
         </div>
       </div>
     </div>
