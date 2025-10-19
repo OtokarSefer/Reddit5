@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './login.css'
-import * as MinimalLoginForm from './script'
+
 
 function Login() {
   const [ email, setEmail ] = useState("")
@@ -10,19 +10,21 @@ function Login() {
 
   const apiBase = import.meta.env.VITE_SERVER_URL
 
-    async function login() {
-    try{
+  async function login(e) {
+    e.preventDefault(); // Prevent form submission
+    try {
       const res = await fetch(`${apiBase}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
-      setToken(data.idToken)
-      alert("Logged In")
+      if (!res.ok) throw new Error(data.error);
+      
+      localStorage.setItem("token", data.idToken);
+      window.location.href = "/home";
     } catch (err) {
-      alert(`${err.message}`)
+      alert(`Login failed: ${err.message}`)
     }    
   }
 
@@ -40,55 +42,55 @@ function Login() {
   }
 
   return (
-    <div class="login-container">
-      <div class="login-card">
-        <div class="login-header">
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-header">
           <h2>Log In</h2>
         </div>
             
-        <form class="login-form" id="loginForm" novalidate>
-          <div class="form-group">
-            <div class="input-wrapper">
+        <form className="login-form" id="loginForm" noValidate>
+          <div className="form-group">
+            <div className="input-wrapper">
               <input 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email" 
                 id="email" 
                 name="email" 
-                required autocomplete="email"/>
-              <label for="email">Email</label>
+                required autoComplete="email"/>
+              <label htmlFor="email">Email</label>
             </div>
-            <span class="error-message" id="emailError"></span>
+            <span className="error-message" id="emailError"></span>
           </div>
 
-          <div class="form-group">
-            <div class="input-wrapper">
+          <div className="form-group">
+            <div className="input-wrapper">
               <input 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password" 
                 id="password" 
                 name="password" 
-                required autocomplete="current-password"/>
-              <label for="password">Password</label>
-              <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
-                <span class="toggle-icon"></span>
+                required autoComplete="current-password"/>
+              <label htmlFor="password">Password</label>
+              <button type="button" className="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                <span className="toggle-icon"></span>
               </button>
             </div>
-            <span class="error-message" id="passwordError"></span>
+            <span className="error-message" id="passwordError"></span>
           </div>
 
-          <button onClick={login} type="submit" class="login-btn">
-            <span class="btn-text">Sign In</span>
-            <span class="btn-loader"></span>
+          <button onClick={login} type="submit" className="login-btn">
+            <span className="btn-text">Sign In</span>
+            <span className="btn-loader"></span>
           </button>
         </form>
 
-        <div class="signup-link">
+        <div className="signup-link">
           <p>Don't have an account? <a href="/SignUp">Create one</a></p>
         </div>
 
-        <div class="success-message" id="successMessage">
+        <div className="success-message" id="successMessage">
           <p>Redirecting to your dashboard...</p>
         </div>
       </div>

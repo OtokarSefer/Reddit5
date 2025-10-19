@@ -126,7 +126,7 @@ class MinimalLoginForm {
         // Simulate redirect after 2 seconds
         setTimeout(() => {
             console.log('Redirecting to dashboard...');
-            // window.location.href = '/dashboard';
+            // window.location.href = '/home';
         }, 2000);
     }
 }
