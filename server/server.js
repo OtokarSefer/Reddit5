@@ -9,11 +9,18 @@ dotenv.config({ path: "./config/.env" })
 
 const app = express()
 
-// Update CORS for Netlify deployment
+const allowedOrigins = [
+  "http://localhost:5173",
+]
+
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ["https://your-netlify-site.netlify.app", "http://localhost:5173"]
-    : "http://localhost:5173",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   credentials: true
 }))
 
@@ -115,6 +122,5 @@ app.get("/posts/:id", async (req, res) => {
   }
 })
 
-// Update for Netlify compatibility
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`))
