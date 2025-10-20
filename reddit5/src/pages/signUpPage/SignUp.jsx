@@ -45,13 +45,13 @@ function SignUp() {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-card">
-          <div className="login-header">
+    <div className="page">
+      <div className="container">
+        <div className="card">
+          <div className="header">
             <h2>Sign Up</h2>
           </div>
-          <form className="login-form" onSubmit={register} noValidate>
+          <form className="form" onSubmit={register} noValidate>
             
             <div className="form-group">
               <div className="input-wrapper">
@@ -101,7 +101,7 @@ function SignUp() {
               </div>
             </div>
 
-            <button type="submit" className="login-btn" disabled={isLoading}>
+            <button type="submit" className="btn" disabled={isLoading}>
               {isLoading ? "Creating Account..." : "Sign Up"}
             </button>
           </form>

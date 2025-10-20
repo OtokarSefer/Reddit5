@@ -8,6 +8,12 @@ function PostPage() {
   const apiBase = import.meta.env.VITE_SERVER_URL || "http://localhost:3333"
 
   useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (!token) {
+      navigate("/login")
+      return
+    }
+
     async function fetchPost() {
       try {
         const res = await fetch(`${apiBase}/posts/${id}`)
@@ -19,20 +25,40 @@ function PostPage() {
       }
     }
     fetchPost()
-  }, [id, apiBase])
+  }, [id, apiBase, navigate])
 
-  if (!post) return <p className="loading">Loading post...</p>
+  const logout = () => {
+    localStorage.removeItem("token")
+    navigate("/login")
+  }
+
+  if (!post) return (
+    <div className="home">
+      <aside className="sidebar">
+        <h2 className="logo">W4n0</h2>
+        <button className="btn btn-primary" onClick={logout}>Logout</button>
+      </aside>
+      <main className="main">
+        <p className="loading">Loading post...</p>
+      </main>
+    </div>
+  )
 
   return (
-    <div className="post-page-wrapper">
-      <div className="post-page-container">
-        <button className="back-btn" onClick={() => navigate("/Home")}>← Back</button>
-        <article className="post-box">
+    <div className="home">
+      <aside className="sidebar">
+        <h2 className="logo">W4n0</h2>
+        <button className="btn btn-secondary" onClick={() => navigate("/home")}>← Back</button>
+        <button className="btn btn-primary" onClick={logout}>Logout</button>
+      </aside>
+
+      <main className="main">
+        <article className="post-detail">
           <h1>{post.title}</h1>
           <p className="post-content">{post.content}</p>
           <small>Posted by {post.username || post.userEmail}</small>
         </article>
-      </div>
+      </main>
     </div>
   )
 }

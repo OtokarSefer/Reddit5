@@ -66,14 +66,14 @@ function Home() {
   }
 
   return (
-    <div className="home-container">
+    <div className="home">
       <aside className="sidebar">
-        <h2 className="logo">Reddit5</h2>
-        <button className="logout-btn" onClick={logout}>Logout</button>
+        <h2 className="logo">W4n0</h2>
+        <button className="btn btn-primary" onClick={logout}>Logout</button>
       </aside>
 
-      <main className="main-feed">
-        <div className="new-post">
+      <main className="main">
+        <div className="create-post">
           <input
             type="text"
             value={title}
@@ -85,7 +85,7 @@ function Home() {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Write your post..."
           />
-          <button onClick={addPost}>Post</button>
+          <button onClick={addPost} className="btn btn-primary">Post</button>
         </div>
         <div className="posts">
           {posts.length === 0 ? (
@@ -108,15 +108,6 @@ function Home() {
           )}
         </div>
       </main>
-
-      <aside className="trends">
-        <h3>Trends</h3>
-        <ul>
-          <li>#react</li>
-          <li>#firebase</li>
-          <li>#nodejs</li>
-        </ul>
-      </aside>
     </div>
   )
 }
