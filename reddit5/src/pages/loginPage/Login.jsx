@@ -23,7 +23,7 @@ function Login() {
       localStorage.setItem("token", data.idToken);
       window.location.href = "/home";
     } catch (err) {
-      alert(`Login failed: ${err.message}`)
+
     }    
   }
 

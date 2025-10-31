@@ -13,13 +13,13 @@ function SignUp() {
     setIsLoading(true)
 
     if (!email || !password || !username) {
-      alert("Please fill in all fields")
+
       setIsLoading(false)
       return
     }
 
     if (password.length < 6) {
-      alert("Password must be at least 6 characters")
+
       setIsLoading(false)
       return
     }
@@ -34,11 +34,11 @@ function SignUp() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
 
-      alert("User created successfully! You can now sign in.")
+
       window.location.href = "/login"
     } catch (err) {
       console.error(err)
-      alert(`Registration failed: ${err.message}`)
+
     } finally {
       setIsLoading(false)
     }
@@ -68,7 +68,7 @@ function SignUp() {
                 <label htmlFor="email">Email</label>
               </div>
             </div>
-            
+
             <div className="form-group">
               <div className="input-wrapper">
                 <input

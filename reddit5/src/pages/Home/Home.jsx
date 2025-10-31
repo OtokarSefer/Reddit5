@@ -31,7 +31,7 @@ function Home() {
   }, [apiBase, isLoggedIn, token])
 
   const addPost = async () => {
-    if (!title.trim() || !content.trim()) return alert("Both title and content are required")
+    if (!title.trim() || !content.trim()) return
     const res = await fetch(`${apiBase}/posts`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },

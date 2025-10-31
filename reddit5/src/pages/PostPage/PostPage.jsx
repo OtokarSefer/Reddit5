@@ -27,7 +27,7 @@ function PostPage() {
           throw new Error("Failed to fetch post")
         }
       } catch (err) {
-        alert(err.message)
+
       } finally {
         setLoading(false)
       }
