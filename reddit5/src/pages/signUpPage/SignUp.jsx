@@ -56,22 +56,6 @@ function SignUp() {
             <div className="form-group">
               <div className="input-wrapper">
                 <input
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  type="text"
-                  id="username"
-                  name="username"
-                  required
-                  autoComplete="username"
-                  disabled={isLoading}
-                />
-                <label htmlFor="username">Username</label>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="input-wrapper">
-                <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
@@ -82,6 +66,22 @@ function SignUp() {
                   disabled={isLoading}
                 />
                 <label htmlFor="email">Email</label>
+              </div>
+            </div>
+            
+            <div className="form-group">
+              <div className="input-wrapper">
+                <input
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  autoComplete="username"
+                  disabled={isLoading}
+                />
+                <label htmlFor="username">Username</label>
               </div>
             </div>
 

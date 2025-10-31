@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
 function PostPage() {
@@ -75,7 +75,7 @@ function PostPage() {
           <div className="paywall">
             <h3>Subscribe to continue reading</h3>
             {isLoggedIn
-              ? <button className="btn btn-primary" onClick={() => navigate("/subscribe")}>Subscribe</button>
+              ? <button className="btn btn-primary" onClick={() => navigate("/Premium")}>Get Premium</button>
               : <button className="btn btn-secondary" onClick={() => navigate("/register")}>Create account</button>}
           </div>
         </main>

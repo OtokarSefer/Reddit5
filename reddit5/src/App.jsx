@@ -6,7 +6,7 @@ import Login from './pages/loginPage/Login.jsx'
 import SignUp from './pages/signUpPage/SignUp.jsx'
 import Home from './pages/Home/Home.jsx'
 import PostPage from "./pages/PostPage/PostPage.jsx"
-import SubscribePage from './pages/Subscription/Subscription.jsx'
+import SubscribePage from './pages/Dev-Subscription/Subscription.jsx'
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/post/:id" element={<PostPage />} />
-        <Route path="/Premium" element={<SubscribePage />} />
+        <Route path="/Dev/Premium" element={<SubscribePage />} />
       </Routes>
     </Router>
   );

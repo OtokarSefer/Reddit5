@@ -56,6 +56,33 @@ async function requireSubscriber(req, res, next) {
   next()
 }
 
+app.post("/dev/toggle-subscription", verifyToken, async (req, res) => {
+  try {
+    const userRef = admin.firestore().collection("users").doc(req.user.uid)
+    const doc = await userRef.get()
+
+    if (!doc.exists) {
+      return res.status(404).json({ error: "User not found" })
+    }
+
+    const profile = doc.data()
+    const currentStatus = profile.subscription?.active || false
+    const newStatus = !currentStatus
+
+    await userRef.update({
+      subscription: {
+        active: newStatus,
+        updatedAt: new Date().toISOString()
+      }
+    })
+
+    res.json({ active: newStatus })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
+
 app.get("/me", verifyToken, async (req, res) => {
   try{
     const profile = await getUserProfile(req.user.uid)
